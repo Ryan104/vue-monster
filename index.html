@@ -35,7 +35,9 @@
         </template>
       </section>
       <section class="history">
-
+        <div class="actionMessage" v-for="action in actionLog" :style="{borderColor: action.color, color: action.color}">
+          {{ action.message }}
+        </div>
       </section>
     </section>
   </div>

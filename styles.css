@@ -83,3 +83,12 @@ button:hover {
   flex: 3;
 }
 
+.actionMessage {
+  border-style: solid;
+  border-width: 1px;
+  background: white;
+  padding: 5px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}
+

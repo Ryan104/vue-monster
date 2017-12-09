@@ -19,18 +19,25 @@ new Vue({
         attackPower: 30,
         imageSrc: './monster.png'
       }
-    }
+    },
+    actionLog: [] // {message, color}
   },
   methods: {
+    newAction: function(message, color){
+      this.actionLog.unshift({message, color})
+    },
     takeDamage: function(character, amount){
       this.characters[character].healthRemaining -= amount
+      this.newAction(`${character.toUpperCase()} took ${amount} DAMAGE`, 'red')
       if (this.characters[character].healthRemaining <= 0){
         this.characters[character].healthRemaining = 0
+        this.newAction(`${character.toUpperCase()} has been DEFEATED`, 'orange')
         this.playing = false;
       }
     },
     healPlayer: function(amount){
       this.characters.player.healthRemaining += amount
+      this.newAction(`PLAYER healed ${amount}!`, 'green')
       if (this.characters.player.healthRemaining > this.characters.player.maxHealth){
         // Dont allow health over max
         this.characters.player.healthRemaining = this.characters.player.maxHealth
@@ -38,6 +45,8 @@ new Vue({
     },
     start: function(){
       this.playing = true
+      this.actionLog = [];
+      this.newAction('BEGIN BATTLE!', 'blue');
       this.characters.player.healthRemaining = this.characters.player.maxHealth
       this.characters.monster.healthRemaining = this.characters.monster.maxHealth
     },
