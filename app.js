@@ -52,6 +52,7 @@ new Vue({
     },
     surrender: function(){
       this.playing = false
+      this.newAction('YOU SURRENDERED', 'orange')
     },
     calculateAttackPoints: function(attackPower){
       return Math.round(Math.random() * attackPower)
