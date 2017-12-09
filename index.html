@@ -11,21 +11,33 @@
 <body>
   <div id="app" class="game">
     <h1>MONSTER BATTLE</h1>
+
     <section class="scoreboard">
       <div v-for="character in characters" class="playerInfo">
         <h2>{{ character.name }}</h2>
-        <div class="healthBar" :style="{width: character.maxHealth * 2 + 'px'}">
+        <img :src="character.imageSrc" alt="character image" />
+        <div class="healthBar" :style="{width: character.maxHealth * 2.5 + 'px'}">
           <div class="remainingHealth" :style="{width: character.healthRemaining / character.maxHealth * 100 + '%'}">
             {{ character.healthRemaining }} / {{ character.maxHealth }}
           </div>
         </div>
       </div>
     </section>
-    <section class="controls">
+    <section class="bottom">    
+      <section class="controls">
+        <template v-if="!playing">
+          <button @click="playing = true">START</button>
+        </template>
+        <template v-else>
+          <button @click="handleAttack">ATTACK</button>
+          <button @click="handleSpAttack">SP. ATTACK</button>
+          <button @click="handleHeal">HEAL</button>
+          <button @click="surrender">SURRENDER</button>
+        </template>
+      </section>
+      <section class="history">
 
-    </section>
-    <section class="history">
-
+      </section>
     </section>
   </div>
   <script src="app.js"></script>

@@ -3,6 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  background-color: #eee;
 }
 
 h1 {
@@ -10,10 +11,44 @@ h1 {
   margin: 50px;
 }
 
+section {
+  margin: 10px;
+  padding: 20px;
+}
+
+button {
+  margin: 10px 3px;
+  padding: 5px;
+  background-color: transparent;
+  border: 1px solid blue;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: blue;
+  color: white;
+}
+
 .scoreboard {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.scoreboard img {
+  max-height: 250px;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.playerInfo, .controls, .history {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px #333;
 }
 
 .playerInfo {
@@ -31,4 +66,18 @@ h1 {
   height: 100%;
   text-align: center;
   background-color: green;
+  color: white;
 }
+
+.controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 250px;
+}
+
+.history {
+  flex: 3;
+}
+
