@@ -9,6 +9,23 @@
   <script src="vue.js"></script>
 </head>
 <body>
+  <div id="app" class="game">
+    <h1>MONSTER BATTLE</h1>
+    <section class="scoreboard">
+      <div v-for="character in characters" class="playerInfo">
+        <h2>{{ character.name }}</h2>
+        <div class="healthbar">
+          {{ character.healthRemaining }}
+        </div>
+      </div>
+    </section>
+    <section class="controls">
+
+    </section>
+    <section class="history">
+      
+    </section>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
