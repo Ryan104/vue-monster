@@ -24,6 +24,10 @@ new Vue({
   methods: {
     takeDamage: function(character, amount){
       this.characters[character].healthRemaining -= amount
+      if (this.characters[character].healthRemaining <= 0){
+        this.characters[character].healthRemaining = 0
+        this.playing = false;
+      }
     },
     healPlayer: function(amount){
       this.characters.player.healthRemaining += amount
@@ -32,11 +36,13 @@ new Vue({
         this.characters.player.healthRemaining = this.characters.player.maxHealth
       }
     },
-    surrender: function(){
-      this.playing = false
+    start: function(){
+      this.playing = true
       this.characters.player.healthRemaining = this.characters.player.maxHealth
       this.characters.monster.healthRemaining = this.characters.monster.maxHealth
-
+    },
+    surrender: function(){
+      this.playing = false
     },
     calculateAttackPoints: function(attackPower){
       return Math.round(Math.random() * attackPower)
@@ -54,8 +60,10 @@ new Vue({
       this.takeDamage('player', monsterAttack)
     },
     handleSpAttack: function(){
-      let monsterAttack = this.calculateAttackPoints(this.characters.monster.attackPower) * 2
-      let playerAttack = this.calculateAttackPoints(this.characters.player.attackPower)
+      let monsterAttack = this.calculateAttackPoints(this.characters.monster.attackPower)
+      let playerAttack = this.calculateAttackPoints(this.characters.player.attackPower) * 2
+      this.takeDamage('player', monsterAttack)
+      this.takeDamage('monster', playerAttack)
     }
   },
   // computed: {

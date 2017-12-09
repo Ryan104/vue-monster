@@ -25,7 +25,7 @@
     <section class="bottom">    
       <section class="controls">
         <template v-if="!playing">
-          <button @click="playing = true">START</button>
+          <button @click="start">START</button>
         </template>
         <template v-else>
           <button @click="handleAttack">ATTACK</button>
