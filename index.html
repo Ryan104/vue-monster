@@ -14,8 +14,10 @@
     <section class="scoreboard">
       <div v-for="character in characters" class="playerInfo">
         <h2>{{ character.name }}</h2>
-        <div class="healthbar">
-          {{ character.healthRemaining }}
+        <div class="healthBar" :style="{width: character.maxHealth * 2 + 'px'}">
+          <div class="remainingHealth" :style="{width: character.healthRemaining / character.maxHealth * 100 + '%'}">
+            {{ character.healthRemaining }} / {{ character.maxHealth }}
+          </div>
         </div>
       </div>
     </section>
@@ -23,7 +25,7 @@
 
     </section>
     <section class="history">
-      
+
     </section>
   </div>
   <script src="app.js"></script>
