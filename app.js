@@ -14,8 +14,8 @@ new Vue({
       },
       monster: {
         name: 'Monster',
-        healthRemaining: 100,
-        maxHealth: 100,
+        healthRemaining: 200,
+        maxHealth: 200,
         attackPower: 30,
         imageSrc: './monster.png'
       }
@@ -27,9 +27,16 @@ new Vue({
     },
     healPlayer: function(amount){
       this.characters.player.healthRemaining += amount
+      if (this.characters.player.healthRemaining > this.characters.player.maxHealth){
+        // Dont allow health over max
+        this.characters.player.healthRemaining = this.characters.player.maxHealth
+      }
     },
     surrender: function(){
       this.playing = false
+      this.characters.player.healthRemaining = this.characters.player.maxHealth
+      this.characters.monster.healthRemaining = this.characters.monster.maxHealth
+
     },
     calculateAttackPoints: function(attackPower){
       return Math.round(Math.random() * attackPower)
@@ -37,9 +44,32 @@ new Vue({
     handleAttack: function(){
       let monsterAttack = this.calculateAttackPoints(this.characters.monster.attackPower)
       let playerAttack = this.calculateAttackPoints(this.characters.player.attackPower)
+      this.takeDamage('player', monsterAttack)
+      this.takeDamage('monster', playerAttack)
+    },
+    handleHeal: function(){
+      let monsterAttack = this.calculateAttackPoints(this.characters.monster.attackPower)
+      let playerHeal = 15 + Math.round(Math.random()*20)
+      this.healPlayer(playerHeal)
+      this.takeDamage('player', monsterAttack)
+    },
+    handleSpAttack: function(){
+      let monsterAttack = this.calculateAttackPoints(this.characters.monster.attackPower) * 2
+      let playerAttack = this.calculateAttackPoints(this.characters.player.attackPower)
     }
   },
-  calculated: {
-    
-  }
+  // computed: {
+  //   characters: {
+  //     player: {
+  //       healthPercent: function(){
+  //         return this.characters.player.healthRemaining / this.characters.player.maxHealth * 100
+  //       }
+  //     },
+  //     monster: {
+  //       healthPercent: function(){
+  //         return this.characters.monster.healthRemaining / this.characters.monster.maxHealth * 100
+  //       }
+  //     }
+  //   }
+  // }
 })

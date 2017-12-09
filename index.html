@@ -17,10 +17,9 @@
         <h2>{{ character.name }}</h2>
         <img :src="character.imageSrc" alt="character image" />
         <div class="healthBar" :style="{width: character.maxHealth * 2.5 + 'px'}">
-          <div class="remainingHealth" :style="{width: character.healthRemaining / character.maxHealth * 100 + '%'}">
-            {{ character.healthRemaining }} / {{ character.maxHealth }}
-          </div>
+          <div class="remainingHealth" :style="{width: character.healthRemaining / character.maxHealth * 100 + '%'}"> </div>
         </div>
+        {{ character.healthRemaining }} / {{ character.maxHealth }}
       </div>
     </section>
     <section class="bottom">    

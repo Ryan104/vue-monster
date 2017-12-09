@@ -58,12 +58,14 @@ button:hover {
 }
 
 .healthBar {
+  height: 30px;
   border: 2px solid black;
   border-radius: 5px;
 }
 
 .remainingHealth {
   height: 100%;
+  width: 100%;
   text-align: center;
   background-color: green;
   color: white;
